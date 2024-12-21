@@ -1,5 +1,7 @@
 # modern-react-architecture
 
+![ReactJS Modern Architecture](https://github.com/iamVihanga/Modern-React-Architecture/blob/main/architecture_diagram.png?raw=true)
+
 To install dependencies:
 
 ```bash
