@@ -1,14 +1,35 @@
-import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./components/ui/card";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [totalSpent, setTotalSpent] = useState<number>(0);
+
+  useEffect(() => {
+    async function fetchTotal() {
+      const res = await fetch(`/api/expenses/total-spent`);
+      const data = await res.json();
+      setTotalSpent(data.total);
+    }
+
+    fetchTotal();
+  }, []);
+
   return (
     <div className="">
-      <h1>Hello World</h1>
-      <p className="text-sm text-gray-500 font-semibold">
-        This is tailwind text
-      </p>
+      <Card className="w-[350px] m-auto">
+        <CardHeader>
+          <CardTitle>Total Spent</CardTitle>
+          <CardDescription>The total amount you've spent</CardDescription>
+        </CardHeader>
 
-      <Button>Hello World</Button>
+        <CardContent>$ {totalSpent}</CardContent>
+      </Card>
     </div>
   );
 }
