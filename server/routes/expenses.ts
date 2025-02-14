@@ -3,7 +3,7 @@ import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
 
 const expenseSchema = z.object({
-  id: z.number().int().positive().min(1),
+  id: z.number().int().positive().min(1).optional(),
   title: z.string().min(3).max(100),
   amount: z.number().int().positive().min(1),
 });
