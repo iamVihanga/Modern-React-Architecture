@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 function App() {
   return (
     <div className="">
@@ -5,6 +7,8 @@ function App() {
       <p className="text-sm text-gray-500 font-semibold">
         This is tailwind text
       </p>
+
+      <Button>Hello World</Button>
     </div>
   );
 }
