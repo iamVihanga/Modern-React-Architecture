@@ -17,9 +17,12 @@ const fakeExpenses: Expense[] = [
 ];
 
 export const expensesRoute = new Hono()
+  // Get all expenses
   .get("/", (c) => {
     return c.json({ expenses: [...fakeExpenses] });
   })
+
+  // Create a new expense
   .post("/", zValidator("json", expenseSchema), async (c) => {
     const data = await c.req.valid("json");
 
@@ -28,6 +31,8 @@ export const expensesRoute = new Hono()
     c.status(201);
     return c.json({ expenses: [...fakeExpenses] });
   })
+
+  // Get a single expense by ID
   .get("/:id{[0-9]+}", (c) => {
     const id = Number.parseInt(c.req.param("id"));
 
@@ -39,6 +44,8 @@ export const expensesRoute = new Hono()
 
     return c.json({ expense });
   })
+
+  // Delete an expense by ID
   .delete("/:id{[0-9]+}", (c) => {
     const id = Number.parseInt(c.req.param("id"));
     const index = fakeExpenses.findIndex((expense) => expense.id === id);
